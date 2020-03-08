@@ -20,3 +20,12 @@ const findAll = (table, findData) => {
 }
 
 exports.findAll = findAll;
+
+
+const findOne = (table, findData) => {
+  return table.findOne({
+    where: findData
+  })
+}
+
+exports.findOne = findOne;

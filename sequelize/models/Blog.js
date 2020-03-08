@@ -24,5 +24,9 @@ module.exports = db.defineModel('blog', {
   is_public: {
     type: db.BOOLEAN,
     allowNull: true
+  },
+  is_draft: {
+    type: db.BOOLEAN,
+    allowNull: true
   }
 });

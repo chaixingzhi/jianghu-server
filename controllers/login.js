@@ -13,15 +13,15 @@ var fn_index = async (ctx, next) => {
 
 var fn_signin = async (ctx, next) => {
   ctx.response.type = 'application/json';
-  // console.log('body: ', ctx.request.body)
   let result = await findAll(User, {
     ...ctx.request.body
   })
-  
+  console.log('result', result)
   if(result.length) {
     ctx.response.body = {
       code: 200,
-      message: 'login success'
+      message: 'login success',
+      data: result[0].dataValues
     };
   } else {
     ctx.response.body = {

@@ -6,7 +6,6 @@ let files = fs.readdirSync(__dirname + '/models');
 let js_files = files.filter((f)=>{
     return f.endsWith('.js');
 }, files);
-
 module.exports = {};
 
 for (let f of js_files) {

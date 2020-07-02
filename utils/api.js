@@ -1,5 +1,5 @@
 const Model = require('../sequelize/model');
-const {createTableData} = require('./sequelize'); 
+const {createTableData, findOne, findAll} = require('./sequelize'); 
 
 exports.Api = {
   create: async function(ctx, tableName) {
@@ -10,8 +10,14 @@ exports.Api = {
   },
   getOne: async function(ctx, tableName) {
     ctx.response.type = 'application/json';
-    return createTableData(Model[tableName], {
-      ...ctx.request.body,
+    return findOne(Model[tableName], {
+      id: ctx.params.id
     })
-  }
+  },
+  getAll: async function(ctx, tableName) {
+    ctx.response.type = 'application/json';
+    return findAll(Model[tableName], {
+      ...ctx.request.body
+    })
+  },
 }

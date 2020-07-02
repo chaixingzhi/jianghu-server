@@ -21,6 +21,10 @@ module.exports = db.defineModel('blog', {
     type: db.TEXT,
     allowNull: true
   },
+  content_html: {
+    type: db.TEXT,
+    allowNull: true
+  },
   is_public: {
     type: db.BOOLEAN,
     allowNull: true

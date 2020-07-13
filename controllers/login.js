@@ -1,23 +1,13 @@
-const {createTableData, findAll} = require('../utils/sequelize');
+const {createTableData, findAll,findOne} = require('../utils/sequelize');
 const model = require('../sequelize/model');
 const {User} = model
-
-var fn_index = async (ctx, next) => {
-  ctx.response.body = `<h1>Index</h1>
-      <form action="/signin" method="post">
-          <p>Name: <input name="name" value="koa"></p>
-          <p>Password: <input name="password" type="password"></p>
-          <p><input type="submit" value="Submit"></p>
-      </form>`;
-};
 
 var fn_signin = async (ctx, next) => {
   ctx.response.type = 'application/json';
   let result = await findAll(User, {
     ...ctx.request.body
   })
-  console.log('result', result)
-  if(result.length) {
+  if(result) {
     ctx.response.body = {
       code: 200,
       message: 'login success',
@@ -33,7 +23,6 @@ var fn_signin = async (ctx, next) => {
 
 var register_signin = async (ctx, next) => {
   ctx.response.type = 'application/json';
-  console.log('body: ', ctx.request.body)
    let result = await createTableData(User, {
     ...ctx.request.body,
   })
@@ -44,7 +33,6 @@ var register_signin = async (ctx, next) => {
 };
 
 module.exports = {
-  'GET /': fn_index,
   'POST /signin': fn_signin,
   'POST /register': register_signin,
 };

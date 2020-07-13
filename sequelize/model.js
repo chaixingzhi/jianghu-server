@@ -1,5 +1,8 @@
 const fs = require('fs');
 const db = require('./db');
+const Blog = require('./models/Blog');
+const User = require('./models/User');
+const Category = require('./models/Category');
 
 let files = fs.readdirSync(__dirname + '/models');
 
@@ -13,7 +16,12 @@ for (let f of js_files) {
     let name = f.substring(0, f.length - 3);
     module.exports[name] = require(__dirname + '/models/' + f);
 }
+Blog.belongsTo(User,{foreignKey: 'author_id', targetKey: 'id'});
+Category.belongsTo(User,{foreignKey: 'user_id', targetKey: 'id'});
+User.hasMany(Blog,{foreignKey: 'author_id', sourceKey: 'id'});
+User.hasMany(Category,{foreignKey: 'user_id', sourceKey: 'id'});
 
 module.exports.sync = () => {
     db.sync();
 };
+

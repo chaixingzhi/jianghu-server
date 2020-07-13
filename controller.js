@@ -3,15 +3,17 @@ const fs = require('fs');
 function addMapping(router, mapping) {
   for (var url in mapping) {
       if (url.startsWith('GET ')) {  // 处理get请求
-          var path = url.substring(4);
-          router.get(path, mapping[url]);
-          console.log(`register URL mapping: GET ${path}`);
+        var path = url.substring(4);
+        router.get(path, mapping[url]);
+        console.log(`register URL mapping: GET ${path}`);
       } else if (url.startsWith('POST ')) { // 处理post请求
-          var path = url.substring(5);
-          router.post(path, mapping[url]);
-          console.log(`register URL mapping: POST ${path}`);
-      } else {
-          console.log(`invalid URL: ${url}`);
+        var path = url.substring(5);
+        router.post(path, mapping[url]);
+        console.log(`register URL mapping: POST ${path}`);
+      } else if (url.startsWith('DELETE ')){
+        var path = url.substring(7);
+        router.delete(path, mapping[url]);
+        console.log(`invalid URL: ${url}`);
       }
   }
 }

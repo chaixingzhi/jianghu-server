@@ -1,6 +1,7 @@
 const db = require('../db');
+const User = require('./User');
 
-module.exports = db.defineModel('category', { 
+const Category = db.defineModel('category', {
   name: {
     type: db.STRING(100),
     allowNull: true,
@@ -10,3 +11,5 @@ module.exports = db.defineModel('category', {
     allowNull: true,
   }
 });
+// Category.belongsTo(User,{foreignKey: 'user_id', targetKey: 'id'});
+module.exports = Category;

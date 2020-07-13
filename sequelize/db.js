@@ -83,9 +83,9 @@ var exp = {
     defineModel: defineModel,
     sync: () => {
         sequelize.sync({ force: true }).then(res => {
-            console.log('同步模型：', res)
+            // console.log('同步模型：', res)
         }).catch(err => {
-            console.log('错误日志', err)
+            // console.log('错误日志', err)
         })
         // if (process.env.NODE_ENV !== 'production') {
         //     console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)

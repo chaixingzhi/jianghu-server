@@ -1,6 +1,10 @@
 const db = require('../db');
+const Blog = require('./Blog');
+const Category = require('./Category');
+const Tag = require('./Tag');
 
-module.exports = db.defineModel('user', { // user表建模
+
+const User = db.defineModel('user', { // user表建模
   loginid: {
     type: db.STRING(100),
     allowNull: true
@@ -32,5 +36,12 @@ module.exports = db.defineModel('user', { // user表建模
   avatar: {
     type: db.STRING(100),
     allowNull: true
+  },
+  user_name: {
+    type: db.STRING(50),
+    allowNull: true
   }
 });
+
+
+module.exports = User;

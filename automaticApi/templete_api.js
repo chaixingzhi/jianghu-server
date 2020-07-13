@@ -5,11 +5,11 @@ let ModelType = 'Blog'
 
 var fn_create_blog = async (ctx, next) => {
     let resualt = await Api.create(ctx, ModelType)
-    ctx.response.body = dataValues;
+    ctx.response.body = resualt.dataValues;
 }
 var fn_edit_blog = async (ctx, next) => {
     let resualt = await Api.edit(ctx, ModelType)
-    ctx.response.body = dataValues;
+    ctx.response.body = resualt.dataValues;
 }
 var fn_get_all_blog = async (ctx, next) => {
     let resualt = await Api.getAll(ctx, ModelType)
